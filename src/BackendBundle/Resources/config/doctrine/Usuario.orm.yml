@@ -1,0 +1,35 @@
+BackendBundle\Entity\Usuario:
+    type: entity
+    table: usuario
+    id:
+        usuarioRut:
+            type: string
+            nullable: false
+            length: 12
+            options:
+                fixed: false
+            id: true
+            column: usuario_rut
+
+    fields:
+        usuarioNombre:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+            column: usuario_nombre
+        usuarioApellido:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+            column: usuario_apellido
+        eliminarEstado:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: eliminar_estado
+    lifecycleCallbacks: {  }

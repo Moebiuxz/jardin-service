@@ -1,0 +1,28 @@
+BackendBundle\Entity\TipoCuenta:
+    type: entity
+    table: tipo_cuenta
+    id:
+        tipoId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: tipo_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        tipoDescripcion:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: tipo_descripcion
+        eliminarEstado:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: eliminar_estado
+    lifecycleCallbacks: {  }

@@ -1,0 +1,46 @@
+BackendBundle\Entity\HistorialSensor:
+    type: entity
+    table: historial_sensor
+    indexes:
+        fk_sensor:
+            columns:
+                - fk_sensor
+    id:
+        historialId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: historial_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        historialValor:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: historial_valor
+        historialFecha:
+            type: datetime
+            nullable: true
+            column: historial_fecha
+        eliminarEstado:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: eliminar_estado
+    manyToOne:
+        fkSensor:
+            targetEntity: Sensor
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_sensor:
+                    referencedColumnName: sensor_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

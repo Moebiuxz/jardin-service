@@ -1,0 +1,56 @@
+BackendBundle\Entity\Cuenta:
+    type: entity
+    table: cuenta
+    indexes:
+        fk_usuario_rut:
+            columns:
+                - fk_usuario_rut
+        fk_cuenta_tipo:
+            columns:
+                - fk_cuenta_tipo
+    id:
+        cuentaId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: cuenta_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        cuentaClave:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+            column: cuenta_clave
+        eliminarEstado:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: eliminar_estado
+    manyToOne:
+        fkUsuarioRut:
+            targetEntity: Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_usuario_rut:
+                    referencedColumnName: usuario_rut
+            orphanRemoval: false
+        fkCuentaTipo:
+            targetEntity: TipoCuenta
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_cuenta_tipo:
+                    referencedColumnName: tipo_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,50 @@
+BackendBundle\Entity\Sensor:
+    type: entity
+    table: sensor
+    indexes:
+        fk_sensor_tipo:
+            columns:
+                - fk_sensor_tipo
+    id:
+        sensorId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: sensor_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        sensorModelo:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+            column: sensor_modelo
+        sensorDescripcion:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+            column: sensor_descripcion
+        eliminarEstado:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: eliminar_estado
+    manyToOne:
+        fkSensorTipo:
+            targetEntity: TipoSensor
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_sensor_tipo:
+                    referencedColumnName: tipo_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

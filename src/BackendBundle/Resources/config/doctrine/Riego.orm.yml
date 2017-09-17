@@ -1,0 +1,65 @@
+BackendBundle\Entity\Riego:
+    type: entity
+    table: riego
+    indexes:
+        fk_riego_tipo:
+            columns:
+                - fk_riego_tipo
+        fk_riego_usuario:
+            columns:
+                - fk_riego_usuario
+    id:
+        riegoId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: riego_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        riegoFecha:
+            type: datetime
+            nullable: true
+            column: riego_fecha
+        riegoTemperatura:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: riego_temperatura
+        riegoHumedad:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: riego_humedad
+        eliminarEstado:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: eliminar_estado
+    manyToOne:
+        fkRiegoTipo:
+            targetEntity: TipoRiego
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_riego_tipo:
+                    referencedColumnName: tipo_id
+            orphanRemoval: false
+        fkRiegoUsuario:
+            targetEntity: Usuario
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_riego_usuario:
+                    referencedColumnName: usuario_rut
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

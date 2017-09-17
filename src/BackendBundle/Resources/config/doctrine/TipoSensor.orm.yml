@@ -1,0 +1,28 @@
+BackendBundle\Entity\TipoSensor:
+    type: entity
+    table: tipo_sensor
+    id:
+        tipoId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: tipo_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        tipoDescripcion:
+            type: string
+            nullable: true
+            length: 250
+            options:
+                fixed: false
+            column: tipo_descripcion
+        eliminarEstado:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: eliminar_estado
+    lifecycleCallbacks: {  }
