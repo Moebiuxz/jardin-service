@@ -122,5 +122,8 @@ class Usuario
     {
         return $this->eliminarEstado;
     }
+
+
+
 }
 

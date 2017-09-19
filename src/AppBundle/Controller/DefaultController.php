@@ -37,15 +37,18 @@ class DefaultController extends Controller
 
             if ($rut != null && $clave != null)
             {
+                # Encriptar la contraseña
+                $pwd = hash("sha256", $clave);
+
                 # retorno como hash opcional
 
                 if ($getHash == null)
                 {
-                    $signup = $jwt_auth->signup($rut, $clave /*, "hash"*/);
+                    $signup = $jwt_auth->signup($rut, $pwd /*, "hash"*/);
                 }
                 else
                 {
-                    $signup = $jwt_auth->signup($rut, $clave, true);
+                    $signup = $jwt_auth->signup($rut, $pwd, true);
                 }
 
                 return new JsonResponse($signup);

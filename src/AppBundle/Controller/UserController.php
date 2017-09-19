@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use BackendBundle\Entity\Cuenta;
 use BackendBundle\Entity\Usuario;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,17 +31,21 @@ class UserController extends Controller
             $nombre = (isset($params->nombre) && ctype_alpha($params->nombre)) ? $params->nombre : null;
             $apellido = (isset($params->apellido) && ctype_alpha($params->apellido)) ? $params->apellido: null;
 
+            $clave = (isset($params->clave)) ? $params->clave : null;
+            $tipo = (isset($params->tipo)) ? $params->tipo : null;
+
             # Inicializar el arreglo
             $data = array();
 
             # Verificar que ningun parametro venga "vacío";
-            if ($rut != null && $nombre != null && $apellido != null)
+            if ($rut != null && $nombre != null && $apellido != null && $clave != null && $tipo != null)
             {
+                # Instanciar usuario
                 $usuario = new Usuario();
-
                 $usuario->setUsuarioRut($rut);
                 $usuario->setUsuarioNombre($nombre);
                 $usuario->setUsuarioApellido($apellido);
+
 
                 # Obtener el manager
                 $em = $this->getDoctrine()->getManager();
@@ -54,9 +59,29 @@ class UserController extends Controller
 
                 if (count($isset_usuario) == 0)
                 {
-                    # Guardar los datos en la entidad de forma definitiva.
+                    # Guardar los datos en la entidad usuario de forma definitiva.
                     $em->persist($usuario);
+                    # Volcar los datos en la base de datos.
+                    $em->flush();
 
+                    #Instanciar cuenta
+                    $cuenta = new Cuenta();
+                    $cuenta->setFkUsuarioRut($usuario);
+
+                    # Obtener la instancia del tipo de cuenta
+                    $tipoCuenta = $em->getRepository("BackendBundle:TipoCuenta")->findBy(
+                        array(
+                            "tipoId" => $tipo
+                        )
+                    );
+                    $cuenta->setFkCuentaTipo($tipoCuenta[0]);
+
+                    # Cifrar la contraseña
+                    $pwd = hash('sha256', $clave);
+                    $cuenta->setCuentaClave($pwd);
+
+                    # Guardar los datos en la entidad cuenta de forma definitiva.
+                    $em->persist($cuenta);
                     # Volcar los datos en la base de datos.
                     $em->flush();
 
