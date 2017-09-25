@@ -66,6 +66,31 @@ class DefaultController extends Controller
         }
     }
 
+    # LOGIN POR GET
+    public function logintestAction($rut, $clave)
+    {
+        # Usar servicio
+        $helpers = $this->get("app.helpers");
+        $jwt_auth = $this->get("app.jwt_auth");
+
+        # Recibir Json por POST
+        //$rut = $request->get("rut", null);
+        //$clave = $request->get("clave", null);
+
+        if ($rut != null && $clave != null)
+        {
+            $signup = $jwt_auth->signup($rut, $clave /*, "hash"*/);
+
+            return new JsonResponse($signup);
+            }
+            else{
+                return $helpers->json(array(
+                    "status" => "error",
+                    "data" => "login not valid!!"
+                ));
+            }
+    }
+
     public function pruebasAction(Request $request)
     {
         # Usar servicio
