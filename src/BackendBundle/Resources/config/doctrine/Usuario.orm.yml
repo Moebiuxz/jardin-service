@@ -10,7 +10,8 @@ BackendBundle\Entity\Usuario:
                 fixed: false
             id: true
             column: usuario_rut
-
+            generator:
+                strategy: IDENTITY
     fields:
         usuarioNombre:
             type: string

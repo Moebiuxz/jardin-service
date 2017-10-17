@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="arduin_bd@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="arduin_bd">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="phpmyadmin"/>
+    <schema id="7" parent="1" name="test"/>
+    <table id="8" parent="2" name="cuenta"/>
+    <table id="9" parent="2" name="historial_sensor"/>
+    <table id="10" parent="2" name="riego"/>
+    <table id="11" parent="2" name="sensor"/>
+    <table id="12" parent="2" name="tipo_cuenta"/>
+    <table id="13" parent="2" name="tipo_riego"/>
+    <table id="14" parent="2" name="tipo_sensor"/>
+    <table id="15" parent="2" name="usuario"/>
+    <column id="16" parent="8" name="cuenta_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="17" parent="8" name="fk_usuario_rut">
+      <Position>2</Position>
+      <DataType>varchar(12)|0</DataType>
+    </column>
+    <column id="18" parent="8" name="cuenta_clave">
+      <Position>3</Position>
+      <DataType>varchar(150)|0</DataType>
+    </column>
+    <column id="19" parent="8" name="fk_cuenta_tipo">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="20" parent="8" name="eliminar_estado">
+      <Position>5</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="21" parent="8" name="fk_cuenta_tipo">
+      <ColNames>fk_cuenta_tipo</ColNames>
+    </index>
+    <index id="22" parent="8" name="fk_usuario_rut">
+      <ColNames>fk_usuario_rut</ColNames>
+    </index>
+    <key id="23" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cuenta_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="24" parent="8" name="cuenta_ibfk_1">
+      <ColNames>fk_usuario_rut</ColNames>
+      <RefSchemaName>arduin_bd</RefSchemaName>
+      <RefTableName>usuario</RefTableName>
+      <RefColNames>usuario_rut</RefColNames>
+    </foreign-key>
+    <foreign-key id="25" parent="8" name="cuenta_ibfk_2">
+      <ColNames>fk_cuenta_tipo</ColNames>
+      <RefSchemaName>arduin_bd</RefSchemaName>
+      <RefTableName>tipo_cuenta</RefTableName>
+      <RefColNames>tipo_id</RefColNames>
+    </foreign-key>
+    <column id="26" parent="9" name="historial_id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="27" parent="9" name="historial_valor">
+      <Position>2</Position>
+      <DataType>float|0</DataType>
+    </column>
+    <column id="28" parent="9" name="historial_fecha">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="29" parent="9" name="fk_sensor">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="30" parent="9" name="eliminar_estado">
+      <Position>5</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="31" parent="9" name="fk_sensor">
+      <ColNames>fk_sensor</ColNames>
+    </index>
+    <key id="32" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>historial_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="33" parent="9" name="historial_sensor_ibfk_1">
+      <ColNames>fk_sensor</ColNames>
+      <RefSchemaName>arduin_bd</RefSchemaName>
+      <RefTableName>sensor</RefTableName>
+      <RefColNames>sensor_id</RefColNames>
+    </foreign-key>
+    <column id="34" parent="10" name="riego_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="35" parent="10" name="riego_fecha">
+      <Position>2</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="36" parent="10" name="riego_temperatura">
+      <Position>3</Position>
+      <DataType>float|0</DataType>
+    </column>
+    <column id="37" parent="10" name="riego_humedad">
+      <Position>4</Position>
+      <DataType>float|0</DataType>
+    </column>
+    <column id="38" parent="10" name="fk_riego_tipo">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="39" parent="10" name="fk_riego_usuario">
+      <Position>6</Position>
+      <DataType>varchar(12)|0</DataType>
+    </column>
+    <column id="40" parent="10" name="eliminar_estado">
+      <Position>7</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="41" parent="10" name="fk_riego_tipo">
+      <ColNames>fk_riego_tipo</ColNames>
+    </index>
+    <index id="42" parent="10" name="fk_riego_usuario">
+      <ColNames>fk_riego_usuario</ColNames>
+    </index>
+    <key id="43" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>riego_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="44" parent="10" name="riego_ibfk_1">
+      <ColNames>fk_riego_tipo</ColNames>
+      <RefSchemaName>arduin_bd</RefSchemaName>
+      <RefTableName>tipo_riego</RefTableName>
+      <RefColNames>tipo_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="45" parent="10" name="riego_ibfk_2">
+      <ColNames>fk_riego_usuario</ColNames>
+      <RefSchemaName>arduin_bd</RefSchemaName>
+      <RefTableName>usuario</RefTableName>
+      <RefColNames>usuario_rut</RefColNames>
+    </foreign-key>
+    <column id="46" parent="11" name="sensor_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="11" name="sensor_modelo">
+      <Position>2</Position>
+      <DataType>varchar(150)|0</DataType>
+    </column>
+    <column id="48" parent="11" name="sensor_descripcion">
+      <Position>3</Position>
+      <DataType>varchar(150)|0</DataType>
+    </column>
+    <column id="49" parent="11" name="fk_sensor_tipo">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="50" parent="11" name="eliminar_estado">
+      <Position>5</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="51" parent="11" name="fk_sensor_tipo">
+      <ColNames>fk_sensor_tipo</ColNames>
+    </index>
+    <key id="52" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>sensor_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="53" parent="11" name="sensor_ibfk_1">
+      <ColNames>fk_sensor_tipo</ColNames>
+      <RefSchemaName>arduin_bd</RefSchemaName>
+      <RefTableName>tipo_sensor</RefTableName>
+      <RefColNames>tipo_id</RefColNames>
+    </foreign-key>
+    <column id="54" parent="12" name="tipo_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="12" name="tipo_descripcion">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="56" parent="12" name="eliminar_estado">
+      <Position>3</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="57" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>tipo_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="58" parent="13" name="tipo_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="13" name="tipo_descripcion">
+      <Position>2</Position>
+      <DataType>varchar(150)|0</DataType>
+    </column>
+    <column id="60" parent="13" name="eliminar_estado">
+      <Position>3</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="61" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>tipo_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="62" parent="14" name="tipo_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="63" parent="14" name="tipo_descripcion">
+      <Position>2</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="64" parent="14" name="eliminar_estado">
+      <Position>3</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="65" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>tipo_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="66" parent="15" name="usuario_rut">
+      <Position>1</Position>
+      <DataType>varchar(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="67" parent="15" name="usuario_nombre">
+      <Position>2</Position>
+      <DataType>varchar(150)|0</DataType>
+    </column>
+    <column id="68" parent="15" name="usuario_apellido">
+      <Position>3</Position>
+      <DataType>varchar(150)|0</DataType>
+    </column>
+    <column id="69" parent="15" name="eliminar_estado">
+      <Position>4</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="70" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>usuario_rut</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

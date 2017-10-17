@@ -1,0 +1,4 @@
+sensor_all:
+  path: /todo
+  defaults: { _controller: "AppBundle:Sensor:getAll" }
+  methods: GET

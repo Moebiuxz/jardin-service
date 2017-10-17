@@ -5,3 +5,11 @@ app_default:
 app_usuario:
   resource: "@AppBundle/Resources/config/routing/usuario.yml"
   prefix: /usuario
+
+app_sensor:
+  resource: "@AppBundle/Resources/config/routing/sensor.yml"
+  prefix: /sensor
+
+app_historial_sensor:
+  resource: "@AppBundle/Resources/config/routing/historialSensor.yml"
+  prefix: /historial-sensor

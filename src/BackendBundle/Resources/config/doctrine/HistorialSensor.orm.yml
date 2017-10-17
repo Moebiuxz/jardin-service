@@ -23,8 +23,11 @@ BackendBundle\Entity\HistorialSensor:
             scale: 0
             column: historial_valor
         historialFecha:
-            type: datetime
+            type: string
             nullable: true
+            length: 30
+            options:
+                fixed: false
             column: historial_fecha
         eliminarEstado:
             type: boolean

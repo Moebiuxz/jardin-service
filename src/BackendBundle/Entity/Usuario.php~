@@ -27,7 +27,20 @@ class Usuario
      */
     private $eliminarEstado = '0';
 
-    
+    /**
+     * Set usuarioRut
+     *
+     * @param string $usuarioRut
+     *
+     * @return Usuario
+     */
+    public function setUsuarioRut($usuarioRut)
+    {
+        $this->usuarioRut = $usuarioRut;
+
+        return $this;
+    }
+
     /**
      * Get usuarioRut
      *
@@ -110,10 +123,6 @@ class Usuario
         return $this->eliminarEstado;
     }
 
-    public function __toString()
-    {
-        return $this->usuarioRut;
-    }
 
 
 }

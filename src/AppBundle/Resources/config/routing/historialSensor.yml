@@ -1,0 +1,10 @@
+historial_sensor_all:
+  path: /todo
+  defaults: { _controller: "AppBundle:HistorialSensor:getAll" }
+  methods: GET
+
+
+historial_new:
+  path: /new/{temp}/{humedad}
+  defaults: { _controller: "AppBundle:HistorialSensor:newValue" }
+  methods: GET

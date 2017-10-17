@@ -75,7 +75,7 @@ DROP TABLE IF EXISTS historial_sensor;
 CREATE TABLE historial_sensor(
   historial_id BIGINT AUTO_INCREMENT,
   historial_valor FLOAT,
-  historial_fecha DATETIME,
+  historial_fecha VARCHAR(30),
   fk_sensor INT,
   eliminar_estado BOOLEAN DEFAULT FALSE,
   FOREIGN KEY (fk_sensor) REFERENCES sensor(sensor_id),
@@ -118,3 +118,18 @@ INSERT INTO tipo_sensor(tipo_id, tipo_descripcion) VALUES (
     2, 'TEMPERATURA'
 );
 
+# SENSOR
+INSERT INTO sensor(sensor_id, sensor_modelo, sensor_descripcion, fk_sensor_tipo) VALUE (
+    1, 'FC-28', 'Sensor de humedad de suelo', 1
+);
+INSERT INTO sensor(sensor_id, sensor_modelo, sensor_descripcion, fk_sensor_tipo) VALUE (
+    2, 'DHT22', 'Sensor de temperatura y humedad ambiental', 2
+);
+
+# HISTORIAL SENSOR
+INSERT INTO historial_sensor (historial_valor, historial_fecha, fk_sensor) VALUES (
+    25.5, now(), 1
+);
+INSERT INTO historial_sensor (historial_valor, historial_fecha, fk_sensor) VALUES (
+    25.5, '2017-10-17 11:01:00', 1
+);

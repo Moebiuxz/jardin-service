@@ -53,7 +53,8 @@ class DefaultController extends Controller
 
                 return new JsonResponse($signup);
             }
-            else{
+            else
+            {
                 return $helpers->json(array(
                     "status" => "error",
                     "data" => "login not valid!!"
